@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/the-mainak-banerjee/zwigato-food/issues"
   },
-  "homepage": "https://github.com/the-mainak-banerjee/zwigato-food#readme"
+  "homepage": "https://github.com/the-mainak-banerjee/zwigato-food#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
 }
