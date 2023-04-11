@@ -1,0 +1,19 @@
+{
+  "name": "zwigato-food",
+  "version": "1.0.0",
+  "description": "A food ordering app",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/the-mainak-banerjee/zwigato-food.git"
+  },
+  "author": "mainak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/the-mainak-banerjee/zwigato-food/issues"
+  },
+  "homepage": "https://github.com/the-mainak-banerjee/zwigato-food#readme"
+}
