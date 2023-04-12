@@ -1,4 +1,4 @@
-export const RestaurantData = [
+export const restaurantData = [
   {
     type: "restaurant",
     data: {

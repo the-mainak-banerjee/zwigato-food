@@ -4,3 +4,6 @@
 # bundle dependencies
 /.parcel-cache
 /dist
+
+#env
+.env
