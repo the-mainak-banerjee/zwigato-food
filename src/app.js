@@ -15,10 +15,12 @@
  *  Copyright (c)
  */
 
+import Header from "./components/header/Header";
+
 const App = () => {
   return (
     <>
-      <h2>Zwigato Food</h2>;{/* {This is a comment} */}
+      <Header />
     </>
   );
 };
