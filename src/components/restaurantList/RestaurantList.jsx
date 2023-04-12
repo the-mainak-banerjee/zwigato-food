@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
-import { RestaurantData } from "../../config";
-import { useState } from "react";
+import { restaurantData } from "../../config";
+import { useEffect, useState } from "react";
 
 const filerdData = (restaurants, searchTerm) => {
   return restaurants.filter((restaurant) => {
@@ -12,7 +12,33 @@ const filerdData = (restaurants, searchTerm) => {
 
 const RestaurantList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [restaurants, setRestaurants] = useState(RestaurantData);
+  const [restaurants, setRestaurants] = useState([]);
+  const [searchedRestaurants, setSearchedRestaurants] = useState([]);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchCall();
+  }, []);
+
+  const fetchCall = async () => {
+    try {
+      const res = await fetch(process.env.REACT_APP_RESTAURANT_LISTING_URL);
+      const data = await res.json();
+      setRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
+      setSearchedRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  if (restaurants?.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Something went wrong</div>;
+  }
+
   return (
     <div>
       <div className="restaurant-search-container">
@@ -25,15 +51,26 @@ const RestaurantList = () => {
         />
         <button
           className="button"
-          onClick={() => setRestaurants(filerdData(restaurants, searchTerm))}
+          onClick={() =>
+            setSearchedRestaurants(filerdData(restaurants, searchTerm))
+          }
         >
           search
         </button>
       </div>
       <div className="restaurant-card-container">
-        {restaurants.map((restaurant) => (
-          <RestaurantCard restaurantOptions={restaurant?.data} />
-        ))}
+        {searchedRestaurants?.length > 0 ? (
+          <>
+            {searchedRestaurants.map((restaurant) => (
+              <RestaurantCard
+                key={restaurant?.data?.id}
+                restaurantOptions={restaurant?.data}
+              />
+            ))}
+          </>
+        ) : (
+          <p>No results match your search</p>
+        )}
       </div>
     </div>
   );

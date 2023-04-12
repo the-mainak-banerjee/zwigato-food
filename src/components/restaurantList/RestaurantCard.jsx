@@ -1,9 +1,10 @@
 const RestaurantCard = ({ restaurantOptions }) => {
+  console.log(process.env.REACT_APP_IMAGE_URL);
   return (
     <div className="restaurant-card">
       <div>
         <img
-          src={`https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_508,h_320,c_fill/${restaurantOptions?.cloudinaryImageId}`}
+          src={`${process.env.REACT_APP_IMAGE_URL}${restaurantOptions?.cloudinaryImageId}`}
           alt={restaurantOptions?.name}
           className="restaurant-image"
         />
