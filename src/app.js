@@ -16,11 +16,13 @@
  */
 
 import Header from "./components/header/Header";
+import RestaurantList from "./components/restaurantList/RestaurantList";
 
 const App = () => {
   return (
     <>
       <Header />
+      <RestaurantList />
     </>
   );
 };
