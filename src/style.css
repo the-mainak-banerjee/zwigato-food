@@ -37,6 +37,20 @@ p {
   border-radius: 5px;
 }
 
+.input {
+  outline: none;
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.restaurant-search-container {
+  display: flex;
+  align-items: center;
+  margin: 10px 0px;
+  gap: 10px;
+}
+
 .restaurant-card-container {
   display: flex;
   flex-wrap: wrap;
