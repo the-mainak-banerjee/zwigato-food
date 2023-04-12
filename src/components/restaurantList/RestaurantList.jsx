@@ -14,6 +14,7 @@ const RestaurantList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [restaurants, setRestaurants] = useState([]);
   const [searchedRestaurants, setSearchedRestaurants] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchCall();
@@ -26,12 +27,16 @@ const RestaurantList = () => {
       setRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
       setSearchedRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
     } catch (err) {
-      console.log(err);
+      setError(err);
     }
   };
 
   if (restaurants?.length === 0) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Something went wrong</div>;
   }
 
   return (
