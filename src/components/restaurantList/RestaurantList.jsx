@@ -2,36 +2,13 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../../utils/useOnline.js";
-
-const filerdData = (restaurants, searchTerm) => {
-  return restaurants.filter((restaurant) => {
-    return restaurant.data.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-  });
-};
+import useRestaurentList from "../../utils/useRestaurentList";
 
 const RestaurantList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
-  const [searchedRestaurants, setSearchedRestaurants] = useState([]);
-  const [error, setError] = useState(null);
   const isOnline = useOnline();
-
-  useEffect(() => {
-    fetchCall();
-  }, []);
-
-  const fetchCall = async () => {
-    try {
-      const res = await fetch(process.env.REACT_APP_RESTAURANT_LISTING_URL);
-      const data = await res.json();
-      setRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
-      setSearchedRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
-    } catch (err) {
-      setError(err);
-    }
-  };
+  const { restaurants, searchedRestaurants, error, getSearchedRestaurants } =
+    useRestaurentList();
 
   if (restaurants?.length === 0) {
     return <div>Loading...</div>;
@@ -57,9 +34,7 @@ const RestaurantList = () => {
         />
         <button
           className="button"
-          onClick={() =>
-            setSearchedRestaurants(filerdData(restaurants, searchTerm))
-          }
+          onClick={() => getSearchedRestaurants(searchTerm)}
         >
           search
         </button>
