@@ -1,36 +1,14 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurantData } from "../../config";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-const filerdData = (restaurants, searchTerm) => {
-  return restaurants.filter((restaurant) => {
-    return restaurant.data.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-  });
-};
+import useOnline from "../../utils/useOnline.js";
+import useRestaurentList from "../../utils/useRestaurentList";
 
 const RestaurantList = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [restaurants, setRestaurants] = useState([]);
-  const [searchedRestaurants, setSearchedRestaurants] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetchCall();
-  }, []);
-
-  const fetchCall = async () => {
-    try {
-      const res = await fetch(process.env.REACT_APP_RESTAURANT_LISTING_URL);
-      const data = await res.json();
-      setRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
-      setSearchedRestaurants(data?.data?.cards?.[2]?.data?.data?.cards);
-    } catch (err) {
-      setError(err);
-    }
-  };
+  const isOnline = useOnline();
+  const { restaurants, searchedRestaurants, error, getSearchedRestaurants } =
+    useRestaurentList();
 
   if (restaurants?.length === 0) {
     return <div>Loading...</div>;
@@ -38,6 +16,10 @@ const RestaurantList = () => {
 
   if (error) {
     return <div>Something went wrong</div>;
+  }
+
+  if (!isOnline) {
+    return <p> 🔴 You are offline now</p>;
   }
 
   return (
@@ -52,9 +34,7 @@ const RestaurantList = () => {
         />
         <button
           className="button"
-          onClick={() =>
-            setSearchedRestaurants(filerdData(restaurants, searchTerm))
-          }
+          onClick={() => getSearchedRestaurants(searchTerm)}
         >
           search
         </button>
