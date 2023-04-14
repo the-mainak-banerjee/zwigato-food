@@ -41,8 +41,6 @@ const RestaurantList = () => {
     return <div>Something went wrong</div>;
   }
 
-  console.log(isOnline);
-
   if (!isOnline) {
     return <p> 🔴 You are offline now</p>;
   }
