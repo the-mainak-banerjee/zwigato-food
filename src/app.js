@@ -15,14 +15,16 @@
  *  Copyright (c)
  */
 
+import { Outlet } from "react-router-dom";
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
-import RestaurantList from "./components/restaurantList/RestaurantList";
 
 const App = () => {
   return (
     <>
       <Header />
-      <RestaurantList />
+      <Outlet />
+      <Footer />
     </>
   );
 };

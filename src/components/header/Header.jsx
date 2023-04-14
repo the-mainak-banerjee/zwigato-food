@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <header>
       <div className="header-container">
-        <a href="/">
+        <Link to="/">
           <img
             src={
               "https://wp.scoopwhoop.com/wp-content/uploads/2022/09/Screenshotter-YouTube-ZwigatoInternationalTrailerKapilSharmaShahanaGoswamiNanditaDas-124-1.jpg?w=1024"
@@ -10,16 +12,16 @@ const Header = () => {
             alt="logo"
             className="header-logo"
           />
-        </a>
+        </Link>
         <ul className="header-menu">
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <Link to="/contact">Contact</Link>
           </li>
         </ul>
         <div>
