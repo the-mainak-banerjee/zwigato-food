@@ -1,6 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
 import { restaurantData } from "../../config";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const filerdData = (restaurants, searchTerm) => {
   return restaurants.filter((restaurant) => {
@@ -62,10 +63,12 @@ const RestaurantList = () => {
         {searchedRestaurants?.length > 0 ? (
           <>
             {searchedRestaurants.map((restaurant) => (
-              <RestaurantCard
+              <Link
+                to={`restaurent/${restaurant?.data?.id}`}
                 key={restaurant?.data?.id}
-                restaurantOptions={restaurant?.data}
-              />
+              >
+                <RestaurantCard restaurantOptions={restaurant?.data} />
+              </Link>
             ))}
           </>
         ) : (
