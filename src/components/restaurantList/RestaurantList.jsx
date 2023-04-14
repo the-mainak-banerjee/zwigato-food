@@ -1,7 +1,7 @@
 import RestaurantCard from "./RestaurantCard";
-import { restaurantData } from "../../config";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnline from "../../utils/useOnline.js";
 
 const filerdData = (restaurants, searchTerm) => {
   return restaurants.filter((restaurant) => {
@@ -16,6 +16,7 @@ const RestaurantList = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [searchedRestaurants, setSearchedRestaurants] = useState([]);
   const [error, setError] = useState(null);
+  const isOnline = useOnline();
 
   useEffect(() => {
     fetchCall();
@@ -38,6 +39,12 @@ const RestaurantList = () => {
 
   if (error) {
     return <div>Something went wrong</div>;
+  }
+
+  console.log(isOnline);
+
+  if (!isOnline) {
+    return <p> 🔴 You are offline now</p>;
   }
 
   return (
