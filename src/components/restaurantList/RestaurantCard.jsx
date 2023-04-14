@@ -1,5 +1,4 @@
 const RestaurantCard = ({ restaurantOptions }) => {
-  console.log(process.env.REACT_APP_IMAGE_URL);
   return (
     <div className="restaurant-card">
       <div>
