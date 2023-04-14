@@ -79,3 +79,11 @@ p {
   justify-content: space-between;
   align-items: center;
 }
+
+.footer_container {
+  background-color: aquamarine;
+  padding: 10px;
+  margin-top: 50px;
+  text-align: center;
+  border-radius: 5px;
+}

@@ -15,6 +15,7 @@
  *  Copyright (c)
  */
 
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import RestaurantList from "./components/restaurantList/RestaurantList";
 
@@ -23,6 +24,7 @@ const App = () => {
     <>
       <Header />
       <RestaurantList />
+      <Footer />
     </>
   );
 };
